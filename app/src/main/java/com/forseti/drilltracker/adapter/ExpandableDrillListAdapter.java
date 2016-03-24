@@ -65,7 +65,7 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         Category category = (Category) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.dancerow, null);
+            convertView = inflater.inflate(R.layout.category_row, null);
         }
         TextView danceName = (TextView) convertView.findViewById(R.id.dance_name);
         danceName.setText(category.getName());
@@ -78,7 +78,7 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.drillrow, null);
+            convertView = inflater.inflate(R.layout.drill_row, null);
         }
 
         TextView nameTextView = (TextView) convertView.findViewById(R.id.drill_name);
