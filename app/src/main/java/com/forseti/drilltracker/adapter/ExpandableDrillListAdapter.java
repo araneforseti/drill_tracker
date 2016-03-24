@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.forseti.drilltracker.Dance;
+import com.forseti.drilltracker.Category;
 import com.forseti.drilltracker.Drill;
 import com.forseti.drilltracker.DrillTrackerMain;
 import com.forseti.drilltracker.R;
@@ -16,33 +16,33 @@ import java.util.List;
 
 public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private List<Dance> dances;
+    private List<Category> categories;
 
-    public ExpandableDrillListAdapter(DrillTrackerMain drillTrackerMain, List<Dance> danceList) {
+    public ExpandableDrillListAdapter(DrillTrackerMain drillTrackerMain, List<Category> categoryList) {
         this.context = drillTrackerMain;
-        this.dances = danceList;
+        this.categories = categoryList;
     }
 
     @Override
     public int getGroupCount() {
-        return this.dances.size();
+        return this.categories.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        Dance dance = (Dance) getGroup(groupPosition);
-        return dance.getDrills().size();
+        Category category = (Category) getGroup(groupPosition);
+        return category.getDrills().size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this.dances.get(groupPosition);
+        return this.categories.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        Dance dance = (Dance) getGroup(groupPosition);
-        return dance.getDrills().get(childPosition);
+        Category category = (Category) getGroup(groupPosition);
+        return category.getDrills().get(childPosition);
     }
 
     @Override
@@ -62,13 +62,13 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        Dance dance = (Dance) getGroup(groupPosition);
+        Category category = (Category) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.dancerow, null);
         }
         TextView danceName = (TextView) convertView.findViewById(R.id.dance_name);
-        danceName.setText(dance.getName());
+        danceName.setText(category.getName());
         return convertView;
     }
 

@@ -2,14 +2,14 @@ package com.forseti.drilltracker;
 
 import java.util.ArrayList;
 
-public class Dance {
+public class Category {
     private String name;
     private String checkedType;
     private boolean checked;
 
     private ArrayList<Drill> drills;
 
-    public Dance(String name) {
+    public Category(String name) {
         this.name = name;
     }
 

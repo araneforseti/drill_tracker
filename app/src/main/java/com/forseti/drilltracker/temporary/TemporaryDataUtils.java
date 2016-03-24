@@ -1,6 +1,6 @@
 package com.forseti.drilltracker.temporary;
 
-import com.forseti.drilltracker.Dance;
+import com.forseti.drilltracker.Category;
 import com.forseti.drilltracker.Drill;
 
 import java.util.ArrayList;
@@ -8,43 +8,43 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TemporaryDataUtils {
-    public static ArrayList<Dance> createDummyData() {
-        ArrayList<Dance> dances = new ArrayList<>();
+    public static ArrayList<Category> createDummyData() {
+        ArrayList<Category> categories = new ArrayList<>();
 
-        Dance west = new Dance("West Coast Swing");
+        Category west = new Category("West Coast Swing");
         west.setDrills(createWestCoastSwingDrills());
-        dances.add(west);
+        categories.add(west);
 
-        Dance twoStep = new Dance("Two Step");
+        Category twoStep = new Category("Two Step");
         twoStep.setDrills(createTwoStepDrills());
-        dances.add(twoStep);
+        categories.add(twoStep);
 
-        Dance waltz = new Dance("Waltz");
+        Category waltz = new Category("Waltz");
         waltz.setDrills(createWaltzDrill());
-        dances.add(waltz);
+        categories.add(waltz);
 
-        return dances;
+        return categories;
     }
 
-    public static List<Dance> createDanceList() {
-        List<Dance> dances = new ArrayList<>();
-        Dance wcs = new Dance("West Coast Swing");
+    public static List<Category> createDanceList() {
+        List<Category> categories = new ArrayList<>();
+        Category wcs = new Category("West Coast Swing");
         wcs.setDrills(createWestCoastSwingDrills());
-        dances.add(wcs);
-        Dance twoStep = new Dance("Two Step");
+        categories.add(wcs);
+        Category twoStep = new Category("Two Step");
         twoStep.setDrills(createTwoStepDrills());
-        dances.add(twoStep);
-        Dance waltz = new Dance("Waltz");
+        categories.add(twoStep);
+        Category waltz = new Category("Waltz");
         waltz.setDrills(createWaltzDrill());
-        dances.add(waltz);
-        return dances;
+        categories.add(waltz);
+        return categories;
     }
 
-    public static HashMap<Dance, List<Drill>> createDrillList() {
-        HashMap<Dance, List<Drill>> drillList = new HashMap<>();
-        drillList.put(new Dance("West Coast Swing"), createWestCoastSwingDrills());
-        drillList.put(new Dance("Two Step"), createTwoStepDrills());
-        drillList.put(new Dance("Waltz"), createWaltzDrill());
+    public static HashMap<Category, List<Drill>> createDrillList() {
+        HashMap<Category, List<Drill>> drillList = new HashMap<>();
+        drillList.put(new Category("West Coast Swing"), createWestCoastSwingDrills());
+        drillList.put(new Category("Two Step"), createTwoStepDrills());
+        drillList.put(new Category("Waltz"), createWaltzDrill());
         return drillList;
     }
 

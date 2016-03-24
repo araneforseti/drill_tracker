@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Drill Tracker</string>
     <string name="title_drill_detail">Drill Detail</string>
+    <string name="create_category">Create Category</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="category_name">Category Name</string>
 </resources>
