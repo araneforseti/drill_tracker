@@ -7,20 +7,27 @@
         android:layout_height="wrap_content"
         android:text="@string/create_drill_title"
         android:id="@+id/create_drill_title"
-        android:textSize="20sp"
-        />
-    <LinearLayout
+        android:textSize="20sp" />
+
+    <ListView
         android:id="@+id/category_picker"
-        android:background="@drawable/layout_bg_selector"
-        android:orientation="vertical"
-        android:descendantFocusability="blocksDescendants"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:descendantFocusability="blocksDescendants">
+    </ListView>
+
     <EditText
         android:id="@+id/create_drill_name"
         android:inputType="textPersonName"
         android:hint="@string/create_drill_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/create_drill_description"
+        android:inputType="textMultiLine"
+        android:hint="Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

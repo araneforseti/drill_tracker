@@ -13,7 +13,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_category"
-        android:src="@android:drawable/ic_search_category_default"
+        android:src="@android:drawable/btn_plus"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

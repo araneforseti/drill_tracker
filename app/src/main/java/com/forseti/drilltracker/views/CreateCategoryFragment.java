@@ -7,6 +7,8 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 
 import com.forseti.drilltracker.R;
 
@@ -29,15 +31,16 @@ public class CreateCategoryFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
+        View categoryView = inflater.inflate(R.layout.dialog_create_category, null);
+        final EditText input = (EditText) categoryView.findViewById(R.id.category_name);
 
-        builder.setView(inflater.inflate(R.layout.dialog_create_category, null))
+        builder.setView(categoryView)
                 .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String userInput = "New Category";
-
+                        String userInput = input.getText().toString();
                         listener.onDialogPositiveClick(userInput);
                     }
                 })
