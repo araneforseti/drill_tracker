@@ -1,21 +1,22 @@
 package com.forseti.drilltracker;
 
 import android.annotation.TargetApi;
+import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 import com.forseti.drilltracker.temporary.TemporaryDataUtils;
-import com.forseti.drilltracker.views.SingleInputDialogFragment;
+import com.forseti.drilltracker.views.CreateCategoryFragment;
+import com.forseti.drilltracker.views.CreateDrillFragment;
 
 import java.util.List;
 
-public class DrillTrackerMain extends AppCompatActivity implements SingleInputDialogFragment.SingleInputDialogListener {
+public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFragment.CreateDrillListener, CreateCategoryFragment.CreateCategoryDialogListener {
     ExpandableDrillListAdapter listAdapter;
     ExpandableListView listView;
     List<Category> categoryList;
@@ -31,9 +32,6 @@ public class DrillTrackerMain extends AppCompatActivity implements SingleInputDi
 
         listAdapter = new ExpandableDrillListAdapter(this, categoryList);
         listView.setAdapter(listAdapter);
-
-        ImageView fab = (ImageView) findViewById(R.id.fab);
-        fab.setImageDrawable(getDrawable(android.R.drawable.btn_plus));
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -62,20 +60,29 @@ public class DrillTrackerMain extends AppCompatActivity implements SingleInputDi
         });
     }
 
-    public void addDance(View view) {
-        Toast.makeText(getApplicationContext(), "Add button clicked", Toast.LENGTH_SHORT).show();
-        categoryList.add(new Category("Category"));
-        listAdapter.notifyDataSetChanged();
+    public void addCategory(View view) {
+        CreateCategoryFragment createCategoryFragment = new CreateCategoryFragment();
+        FragmentManager manager = getFragmentManager();
+        createCategoryFragment.show(manager, "CreateCategoryFragment");
     }
 
-    public void showDanceDialog() {
-//        NewDanceDialogFragment dialogFragment = new NewDanceDialogFragment();
-//        FragmentManager fragmentManager = (FragmentManager) getSupportFragmentManager();
-//        dialogFragment.show(fragmentManager, "DanceDialogFragment");
+    public void addDrill(View view) {
+        CreateDrillFragment drillFragment = new CreateDrillFragment();
+        drillFragment.setListAdapter(listAdapter);
+        FragmentManager manager = getFragmentManager();
+        drillFragment.show(manager, "CreateDrillFragment");
+    }
+
+    @Override
+    public void onDialogPositiveClick(int categoryPosition, Drill newDrill) {
+        Category category = (Category) listAdapter.getGroup(categoryPosition);
+        category.getDrills().add(newDrill);
+        listAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onDialogPositiveClick(String userInput) {
-
+        Category newCategory = new Category(userInput);
+        listAdapter.addCategory(newCategory);
     }
 }

@@ -94,4 +94,13 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void addCategory(Category newCategory) {
+        categories.add(newCategory);
+        notifyDataSetChanged();
+    }
 }

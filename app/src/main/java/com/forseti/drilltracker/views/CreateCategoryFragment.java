@@ -10,21 +10,18 @@ import android.view.LayoutInflater;
 
 import com.forseti.drilltracker.R;
 
-public class SingleInputDialogFragment extends DialogFragment {
-
-
-
-    public interface SingleInputDialogListener {
-        public void onDialogPositiveClick(String userInput);
+public class CreateCategoryFragment extends DialogFragment {
+    public interface CreateCategoryDialogListener {
+        void onDialogPositiveClick(String userInput);
     }
 
-    SingleInputDialogListener listener;
+    CreateCategoryDialogListener listener;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            listener = (SingleInputDialogListener) activity;
+            listener = (CreateCategoryDialogListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement SingleInputDialogListener");
         }
@@ -36,20 +33,21 @@ public class SingleInputDialogFragment extends DialogFragment {
         final LayoutInflater inflater = getActivity().getLayoutInflater();
 
         builder.setView(inflater.inflate(R.layout.dialog_create_category, null))
-            .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String userInput = "";
+                .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String userInput = "New Category";
 
-                    listener.onDialogPositiveClick(userInput);
-                }
-            })
-            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+                        listener.onDialogPositiveClick(userInput);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
         return builder.create();
     }
 }

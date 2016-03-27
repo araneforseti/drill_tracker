@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Category {
     private String name;
-    private String checkedType;
-    private boolean checked;
 
     private ArrayList<Drill> drills;
 
     public Category(String name) {
         this.name = name;
+        this.drills = new ArrayList<>();
     }
 
     public String getName() {
@@ -19,22 +18,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCheckedType() {
-        return checkedType;
-    }
-
-    public void setCheckedType(String checkedType) {
-        this.checkedType = checkedType;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
     }
 
     public ArrayList<Drill> getDrills() {
