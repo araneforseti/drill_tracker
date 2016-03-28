@@ -8,11 +8,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 
 import com.forseti.drilltracker.Drill;
 import com.forseti.drilltracker.R;
+import com.forseti.drilltracker.adapter.CategoryAdapter;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 
 public class CreateDrillFragment extends DialogFragment {
@@ -43,22 +46,21 @@ public class CreateDrillFragment extends DialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         View createDrillView = inflater.inflate(R.layout.dialog_create_drill, null);
+
         final EditText drillName = (EditText) createDrillView.findViewById(R.id.create_drill_name);
         final EditText drillDescription = (EditText) createDrillView.findViewById(R.id.create_drill_description);
-        final ListView categoryList = (ListView) createDrillView.findViewById(R.id.category_picker);
+
+        final Spinner categoryRadio = (Spinner) createDrillView.findViewById(R.id.categories_spinner);
+        ArrayAdapter categoryAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, listAdapter.getCategories());
+        categoryAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        categoryRadio.setAdapter(categoryAdapter);
 
         builder.setView(createDrillView)
-                //.setSingleChoiceItems(new CategoryListAdapter(listAdapter.getCategories()), checkedItem, new DialogInterface.OnClickListener() {
-                  //  @Override
-                    //public void onClick(DialogInterface dialog, int which) {
-
-                    //}
-                //})
                 .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Drill drill = new Drill(drillName.getText().toString(), drillDescription.getText().toString());
-                        int categoryPosition = 1;
+                        int categoryPosition = categoryRadio.getSelectedItemPosition();
                         listener.onDialogPositiveClick(categoryPosition, drill);
                     }
                 })

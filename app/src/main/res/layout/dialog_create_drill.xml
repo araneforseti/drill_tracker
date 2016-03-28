@@ -9,13 +9,11 @@
         android:id="@+id/create_drill_title"
         android:textSize="20sp" />
 
-    <ListView
-        android:id="@+id/category_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:descendantFocusability="blocksDescendants">
-    </ListView>
+    <Spinner
+        android:id="@+id/categories_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Spinner>
 
     <EditText
         android:id="@+id/create_drill_name"
@@ -27,7 +25,7 @@
     <EditText
         android:id="@+id/create_drill_description"
         android:inputType="textMultiLine"
-        android:hint="Description"
+        android:hint="@string/drill_description_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

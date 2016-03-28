@@ -12,6 +12,7 @@ import com.forseti.drilltracker.Drill;
 import com.forseti.drilltracker.DrillTrackerMain;
 import com.forseti.drilltracker.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
@@ -95,8 +96,14 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<String> getCategories() {
+        List<String> categoryNames = new ArrayList<>(getGroupCount());
+
+        for(Category category : categories) {
+            categoryNames.add(category.getName());
+        }
+
+        return categoryNames;
     }
 
     public void addCategory(Category newCategory) {

@@ -8,4 +8,5 @@
     <string name="create_drill_title">Create Drill</string>
     <string name="create_drill_name">Drill Name</string>
     <string name="add_category">Create Category</string>
+    <string name="drill_description_hint">Description</string>
 </resources>
