@@ -6,6 +6,7 @@ import android.widget.ExpandableListView;
 
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 import com.forseti.drilltracker.clicklistener.CategoryContextMenuClickListener;
+import com.forseti.drilltracker.clicklistener.CategoryDeleteMenuListener;
 import com.forseti.drilltracker.clicklistener.DrillContextMenuClickListener;
 import com.forseti.drilltracker.clicklistener.DrillDeleteMenuListener;
 
@@ -23,7 +24,7 @@ public class ListContextMenuInfo {
         if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
             CategoryContextMenuClickListener categoryContextMenuClickListener = new CategoryContextMenuClickListener(context, listAdapter);
             menu.add(category, drillPosition, 1, "Edit Category Name").setOnMenuItemClickListener(categoryContextMenuClickListener);
-            menu.add(category, drillPosition, 2, "Delete Category").setOnMenuItemClickListener(categoryContextMenuClickListener);
+            menu.add(category, drillPosition, 2, "Delete Category").setOnMenuItemClickListener(new CategoryDeleteMenuListener(context, listAdapter));
         }
         else {
             DrillContextMenuClickListener drillContextMenuClickListener = new DrillContextMenuClickListener(context, listAdapter);
