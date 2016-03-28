@@ -17,6 +17,7 @@ import com.forseti.drilltracker.menuinfo.ListContextMenuInfo;
 import com.forseti.drilltracker.utils.DataUtils;
 import com.forseti.drilltracker.views.CreateCategoryFragment;
 import com.forseti.drilltracker.views.CreateDrillFragment;
+import com.forseti.drilltracker.views.DetailedDrillFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,11 +71,20 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Drill drill = (Drill) listAdapter.getChild(groupPosition, childPosition);
+                showDetailedDrill(drill);
                 return false;
             }
         });
 
         DataUtils.loadData(getApplicationContext(), listAdapter);
+    }
+
+    private void showDetailedDrill(Drill drill) {
+        DetailedDrillFragment drillFragment = new DetailedDrillFragment();
+        drillFragment.setDrill(drill);
+        FragmentManager manager = getFragmentManager();
+        drillFragment.show(manager, "DetailedDrillFragment");
     }
 
     public void addCategory(View view) {
