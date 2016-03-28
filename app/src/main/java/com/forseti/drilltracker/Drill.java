@@ -9,6 +9,10 @@ public class Drill {
         this.description = description;
     }
 
+    public Drill() {
+
+    }
+
     public String getName() {
         return name;
     }
