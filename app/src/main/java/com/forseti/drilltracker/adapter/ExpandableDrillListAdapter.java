@@ -12,6 +12,8 @@ import com.forseti.drilltracker.Drill;
 import com.forseti.drilltracker.DrillTrackerMain;
 import com.forseti.drilltracker.R;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.category_row, null);
         }
-        TextView danceName = (TextView) convertView.findViewById(R.id.dance_name);
+        TextView danceName = (TextView) convertView.findViewById(R.id.category_name);
         danceName.setText(category.getName());
         return convertView;
     }
@@ -109,5 +111,9 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
     public void addCategory(Category newCategory) {
         categories.add(newCategory);
         notifyDataSetChanged();
+    }
+
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
     }
 }

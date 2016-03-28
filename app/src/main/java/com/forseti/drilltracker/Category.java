@@ -12,6 +12,10 @@ public class Category {
         this.drills = new ArrayList<>();
     }
 
+    public Category() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -26,5 +30,10 @@ public class Category {
 
     public void setDrills(ArrayList<Drill> drills) {
         this.drills = drills;
+    }
+
+    @Override
+    public String toString() {
+        return name + " Drills: " + drills.toString();
     }
 }
