@@ -10,12 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.Spinner;
 
-import com.forseti.drilltracker.Drill;
+import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.R;
-import com.forseti.drilltracker.adapter.CategoryAdapter;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 
 public class CreateDrillFragment extends DialogFragment {

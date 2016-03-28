@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.forseti.drilltracker.Category;
-import com.forseti.drilltracker.Drill;
+import com.forseti.drilltracker.data.Category;
+import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.DrillTrackerMain;
 import com.forseti.drilltracker.R;
+import com.forseti.drilltracker.utils.DataUtils;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,12 +107,13 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         return categoryNames;
     }
 
-    public void addCategory(Category newCategory) {
+    public void addCategory(Context context, Category newCategory) {
         categories.add(newCategory);
-        notifyDataSetChanged();
+        notifyDataSetChanged(context);
     }
 
-    public void notifyDataSetChanged() {
+    public void notifyDataSetChanged(Context context) {
         super.notifyDataSetChanged();
+        DataUtils.saveData(context, this);
     }
 }

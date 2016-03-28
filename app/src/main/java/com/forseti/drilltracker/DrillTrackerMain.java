@@ -2,34 +2,22 @@ package com.forseti.drilltracker;
 
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.json.ReaderBasedJsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
-import com.forseti.drilltracker.temporary.TemporaryDataUtils;
+import com.forseti.drilltracker.data.Category;
+import com.forseti.drilltracker.data.Drill;
+import com.forseti.drilltracker.menuinfo.CategoryContextMenuInfo;
+import com.forseti.drilltracker.utils.DataUtils;
 import com.forseti.drilltracker.views.CreateCategoryFragment;
 import com.forseti.drilltracker.views.CreateDrillFragment;
 
-import org.apache.commons.io.FileUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +38,16 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
 
         listAdapter = new ExpandableDrillListAdapter(this, categoryList);
         listView.setAdapter(listAdapter);
+
+        registerForContextMenu(listView);
+
+        listView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
+                CategoryContextMenuInfo.createMenu(menu, info, listAdapter);
+            }
+        });
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -77,7 +75,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
             }
         });
 
-        loadData();
+        DataUtils.loadData(getApplicationContext(), listAdapter);
     }
 
     public void addCategory(View view) {
@@ -103,65 +101,12 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
     public void onDialogPositiveClick(int categoryPosition, Drill newDrill) {
         Category category = (Category) listAdapter.getGroup(categoryPosition);
         category.getDrills().add(newDrill);
-        listAdapter.notifyDataSetChanged();
-        saveData();
+        listAdapter.notifyDataSetChanged(getApplicationContext());
     }
 
     @Override
     public void onDialogPositiveClick(String userInput) {
         Category newCategory = new Category(userInput);
-        listAdapter.addCategory(newCategory);
-        saveData();
-    }
-
-    public void saveData() {
-        List<Category> categories = new ArrayList<>();
-        ObjectMapper mapper = new ObjectMapper();
-
-        for (int index = 0; index < listAdapter.getGroupCount(); index++) {
-            Category category = (Category) listAdapter.getGroup(index);
-            Log.i("Data Category", category.toString());
-            categories.add(category);
-        }
-        try {
-            String dataString = mapper.writeValueAsString(categories);
-            byte[] data = dataString.getBytes();
-            Log.i("Data Byte", dataString);
-            FileOutputStream fileOutputStream = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fileOutputStream.write(data);
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Log.i("Data", "DATA SAVED!");
-    }
-
-    public void loadData() {
-        ObjectMapper mapper = new ObjectMapper();
-        String rawDataString = "";
-
-        try {
-            FileInputStream fileInputStream = openFileInput(FILENAME);
-            int cha;
-            while ((cha = fileInputStream.read()) != -1) {
-                rawDataString = rawDataString + (char) cha;
-            }
-            fileInputStream.close();
-
-            Log.i("RawData", rawDataString);
-
-            JSONArray jsonArray = new JSONArray(rawDataString);
-            for (int index = 0; index < jsonArray.length(); index++) {
-                String rawCategory = jsonArray.getString(index);
-                Category loadedCategory = mapper.readValue(rawCategory, Category.class);
-                Log.i("ParsedData", loadedCategory.toString());
-                listAdapter.addCategory(loadedCategory);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Log.i("Data", "DATA LOADED");
-
+        listAdapter.addCategory(getApplicationContext(), newCategory);
     }
 }

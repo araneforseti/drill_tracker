@@ -1,4 +1,4 @@
-package com.forseti.drilltracker;
+package com.forseti.drilltracker.data;
 
 public class Drill {
     private String name;
