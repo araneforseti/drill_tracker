@@ -99,9 +99,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
 
     @Override
     public void onDialogPositiveClick(int categoryPosition, Drill newDrill) {
-        Category category = (Category) listAdapter.getGroup(categoryPosition);
-        category.getDrills().add(newDrill);
-        listAdapter.notifyDataSetChanged(getApplicationContext());
+        listAdapter.addDrill(getApplicationContext(), categoryPosition, newDrill);
     }
 
     @Override

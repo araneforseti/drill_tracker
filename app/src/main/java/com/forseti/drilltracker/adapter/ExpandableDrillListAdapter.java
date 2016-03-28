@@ -112,6 +112,12 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         notifyDataSetChanged(context);
     }
 
+    public void addDrill(Context context, int categoryPosition, Drill newDrill) {
+        Category category = (Category) getGroup(categoryPosition);
+        category.getDrills().add(newDrill);
+        notifyDataSetChanged(context);
+    }
+
     public void notifyDataSetChanged(Context context) {
         super.notifyDataSetChanged();
         DataUtils.saveData(context, this);
