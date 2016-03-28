@@ -1,6 +1,7 @@
 package com.forseti.drilltracker.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,6 +116,14 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
     public void addDrill(Context context, int categoryPosition, Drill newDrill) {
         Category category = (Category) getGroup(categoryPosition);
         category.getDrills().add(newDrill);
+        notifyDataSetChanged(context);
+    }
+
+    public void removeDrill(Context context, int categoryPosition, int drillPosition) {
+        Log.i("Data Removal", "Removing a drill!");
+        Log.i("Data Removal", "Category: " + categoryPosition + " | Drill: " + drillPosition);
+        Category category = (Category) getGroup(categoryPosition);
+        category.getDrills().remove(drillPosition);
         notifyDataSetChanged(context);
     }
 

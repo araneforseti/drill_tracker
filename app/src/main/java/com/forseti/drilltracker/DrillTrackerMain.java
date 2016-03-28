@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 import com.forseti.drilltracker.data.Category;
 import com.forseti.drilltracker.data.Drill;
-import com.forseti.drilltracker.menuinfo.CategoryContextMenuInfo;
+import com.forseti.drilltracker.menuinfo.ListContextMenuInfo;
 import com.forseti.drilltracker.utils.DataUtils;
 import com.forseti.drilltracker.views.CreateCategoryFragment;
 import com.forseti.drilltracker.views.CreateDrillFragment;
@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFragment.CreateDrillListener, CreateCategoryFragment.CreateCategoryDialogListener {
-    String FILENAME = "drill_list";
     ExpandableDrillListAdapter listAdapter;
     ExpandableListView listView;
     List<Category> categoryList;
@@ -45,7 +44,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
                 ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
-                CategoryContextMenuInfo.createMenu(menu, info, listAdapter);
+                ListContextMenuInfo.createMenu(getApplicationContext(), menu, info, listAdapter);
             }
         });
 

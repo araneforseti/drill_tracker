@@ -1,17 +1,20 @@
 package com.forseti.drilltracker.clicklistener;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
-import com.forseti.drilltracker.menuinfo.CategoryContextMenuInfo;
+import com.forseti.drilltracker.menuinfo.ListContextMenuInfo;
 
 public class CategoryContextMenuClickListener implements MenuItem.OnMenuItemClickListener {
 
     ExpandableDrillListAdapter expandableDrillListAdapter;
+    Context context;
 
-    public CategoryContextMenuClickListener(ExpandableDrillListAdapter listAdapter) {
+    public CategoryContextMenuClickListener(Context context, ExpandableDrillListAdapter listAdapter) {
         this.expandableDrillListAdapter = listAdapter;
+        this.context = context;
     }
 
     @Override
@@ -19,29 +22,17 @@ public class CategoryContextMenuClickListener implements MenuItem.OnMenuItemClic
         int itemId = item.getItemId();
 
         switch (itemId) {
-            case CategoryContextMenuInfo.CATEGORY_DELETE:
+            case ListContextMenuInfo.CATEGORY_DELETE:
+                Log.i("Category Removal", "Removing a category!");
                 deleteCategory(item);
                 return true;
-            case CategoryContextMenuInfo.CATEGORY_EDIT:
+            case ListContextMenuInfo.CATEGORY_EDIT:
+                Log.i("Category Editing", "Editing a category!");
                 editCategory(item);
-                return true;
-            case CategoryContextMenuInfo.DRILL_DELETE:
-                deleteDrill(item);
-                return true;
-            case CategoryContextMenuInfo.DRILL_EDIT:
-                editDrill(item);
                 return true;
             default:
                 return true;
         }
-    }
-
-    private void editDrill(MenuItem item) {
-
-    }
-
-    private void deleteDrill(MenuItem item) {
-
     }
 
     private void editCategory(MenuItem item) {
