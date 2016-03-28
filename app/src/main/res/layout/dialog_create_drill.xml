@@ -24,8 +24,15 @@
 
     <EditText
         android:id="@+id/create_drill_description"
-        android:inputType="textMultiLine"
+        android:inputType="textLongMessage"
         android:hint="@string/drill_description_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/create_drill_instructions"
+        android:inputType="textMultiLine"
+        android:hint="@string/drill_instruction_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

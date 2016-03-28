@@ -8,6 +8,7 @@
     <string name="create_drill_title">Create Drill</string>
     <string name="create_drill_name">Drill Name</string>
     <string name="add_category">Create Category</string>
-    <string name="drill_description_hint">Description</string>
+    <string name="drill_description_hint">Short Description</string>
     <string name="no_categories">No categories found! Please add one before creating a drill!</string>
+    <string name="drill_instruction_hint">Detailed Instructions</string>
 </resources>

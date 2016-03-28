@@ -47,6 +47,7 @@ public class CreateDrillFragment extends DialogFragment {
 
         final EditText drillName = (EditText) createDrillView.findViewById(R.id.create_drill_name);
         final EditText drillDescription = (EditText) createDrillView.findViewById(R.id.create_drill_description);
+        final EditText drillInstruction = (EditText) createDrillView.findViewById(R.id.create_drill_instructions);
 
         final Spinner categoryRadio = (Spinner) createDrillView.findViewById(R.id.categories_spinner);
         ArrayAdapter categoryAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, listAdapter.getCategories());
@@ -58,6 +59,7 @@ public class CreateDrillFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Drill drill = new Drill(drillName.getText().toString(), drillDescription.getText().toString());
+                        drill.setInstructions(drillInstruction.getText().toString());
                         int categoryPosition = categoryRadio.getSelectedItemPosition();
                         listener.onDialogPositiveClick(categoryPosition, drill);
                     }
