@@ -36,4 +36,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/create_drill_video_url"
+        android:inputType="textUri"
+        android:hint="@string/drill_video_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

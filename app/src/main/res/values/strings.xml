@@ -11,4 +11,5 @@
     <string name="drill_description_hint">Short Description</string>
     <string name="no_categories">No categories found! Please add one before creating a drill!</string>
     <string name="drill_instruction_hint">Detailed Instructions</string>
+    <string name="drill_video_hint">Video URL</string>
 </resources>
