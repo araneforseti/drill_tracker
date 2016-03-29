@@ -4,6 +4,7 @@ public class Drill {
     private String name;
     private String description;
     private String instructions;
+    private String videoURL;
 
     public Drill(String name, String description) {
         this.name = name;
@@ -39,5 +40,13 @@ public class Drill {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+
+    public void setVideoURL(String videoURL) {
+        this.videoURL = videoURL;
+    }
+
+    public String getVideoURL() {
+        return videoURL;
     }
 }

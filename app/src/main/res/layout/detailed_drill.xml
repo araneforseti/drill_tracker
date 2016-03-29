@@ -23,8 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <VideoView
-        android:id="@+id/drill_video_player"
+    <TextView
+        android:linksClickable="true"
+        android:autoLink="web"
+        android:id="@+id/drill_video_url"
         android:layout_margin="@dimen/text_margin"
         android:visibility="gone"
         android:layout_gravity="center"
