@@ -12,4 +12,6 @@
     <string name="no_categories">No categories found! Please add one before creating a drill!</string>
     <string name="drill_instruction_hint">Detailed Instructions</string>
     <string name="drill_video_hint">Video URL</string>
+    <string name="delete_categoy">Delete Category</string>
+    <string name="delete_drill">Delete Drill</string>
 </resources>

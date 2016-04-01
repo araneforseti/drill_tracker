@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ExpandableListView
-        android:id="@+id/expanded_menu"
+        android:id="@+id/category_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ExpandableListView>

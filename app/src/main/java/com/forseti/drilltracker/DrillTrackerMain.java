@@ -33,7 +33,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
-        listView = (ExpandableListView) findViewById(R.id.expanded_menu);
+        listView = (ExpandableListView) findViewById(R.id.category_list);
         categoryList = new ArrayList<>();
 
         listAdapter = new ExpandableDrillListAdapter(this, categoryList);
@@ -104,6 +104,10 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
             FragmentManager manager = getFragmentManager();
             drillFragment.show(manager, "CreateDrillFragment");
         }
+    }
+
+    public void deleteAllData() {
+        listAdapter.clearData(getApplicationContext());
     }
 
     @Override

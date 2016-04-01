@@ -136,4 +136,9 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         categories.remove(groupId);
         notifyDataSetChanged(context);
     }
+
+    public void clearData(Context context) {
+        categories.clear();
+        DataUtils.saveData(context, this);
+    }
 }

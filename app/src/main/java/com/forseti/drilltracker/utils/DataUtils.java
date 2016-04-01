@@ -21,6 +21,8 @@ public class DataUtils {
         List<Category> categories = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
 
+        Log.i("Data saving", "Saving " + listAdapter.getGroupCount());
+
         for (int index = 0; index < listAdapter.getGroupCount(); index++) {
             Category category = (Category) listAdapter.getGroup(index);
             Log.i("Data Category", category.toString());
