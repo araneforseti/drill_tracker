@@ -14,4 +14,5 @@
     <string name="drill_video_hint">Video URL</string>
     <string name="delete_categoy">Delete Category</string>
     <string name="delete_drill">Delete Drill</string>
+    <string name="not_empty_category">Not an empty category!</string>
 </resources>
