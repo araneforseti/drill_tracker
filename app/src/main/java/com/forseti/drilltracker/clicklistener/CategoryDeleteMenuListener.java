@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.forseti.drilltracker.R;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 
 public class CategoryDeleteMenuListener implements MenuItem.OnMenuItemClickListener {
@@ -18,7 +19,7 @@ public class CategoryDeleteMenuListener implements MenuItem.OnMenuItemClickListe
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if (listAdapter.getChildrenCount(item.getGroupId()) != 0) {
-            Toast toast = Toast.makeText(context, "Not an empty category!", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, R.string.not_empty_category, Toast.LENGTH_SHORT);
             toast.show();
         } else {
             listAdapter.removeCategory(context, item.getGroupId());

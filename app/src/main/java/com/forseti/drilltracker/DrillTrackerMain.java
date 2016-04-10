@@ -26,6 +26,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
     ExpandableDrillListAdapter listAdapter;
     ExpandableListView listView;
     List<Category> categoryList;
+    Toast toast;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -95,8 +96,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
 
     public void addDrill(View view) {
         if (listAdapter.getGroupCount() == 0) {
-            Toast toast = Toast.makeText(getApplicationContext(), R.string.no_categories, Toast.LENGTH_SHORT);
-            toast.show();
+            setToast(R.string.no_categories);
         }
         else {
             CreateDrillFragment drillFragment = new CreateDrillFragment();
@@ -104,6 +104,14 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
             FragmentManager manager = getFragmentManager();
             drillFragment.show(manager, "CreateDrillFragment");
         }
+    }
+
+    public void setToast(int toast_message_id) {
+        if (toast != null) {
+            toast.cancel();
+        }
+        toast = Toast.makeText(getApplicationContext(), toast_message_id, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     public void deleteAllData() {
