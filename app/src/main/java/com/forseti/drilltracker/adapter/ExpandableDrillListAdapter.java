@@ -141,4 +141,9 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         categories.clear();
         DataUtils.saveData(context, this);
     }
+
+    public void editName(Category category, String newName) {
+        category.setName(newName);
+        notifyDataSetChanged(context);
+    }
 }

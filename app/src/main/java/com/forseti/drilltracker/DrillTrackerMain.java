@@ -18,11 +18,12 @@ import com.forseti.drilltracker.utils.DataUtils;
 import com.forseti.drilltracker.views.CreateCategoryFragment;
 import com.forseti.drilltracker.views.CreateDrillFragment;
 import com.forseti.drilltracker.views.DetailedDrillFragment;
+import com.forseti.drilltracker.views.EditCategoryFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFragment.CreateDrillListener, CreateCategoryFragment.CreateCategoryDialogListener {
+public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFragment.CreateDrillListener, CreateCategoryFragment.CreateCategoryDialogListener, EditCategoryFragment.EditCategoryDialogListener {
     ExpandableDrillListAdapter listAdapter;
     ExpandableListView listView;
     List<Category> categoryList;
@@ -46,7 +47,7 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
                 ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
-                ListContextMenuInfo.createMenu(getApplicationContext(), menu, info, listAdapter);
+                ListContextMenuInfo.createMenu(getApplicationContext(), menu, info, listAdapter, getFragmentManager());
             }
         });
 
@@ -127,5 +128,10 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
     public void onDialogPositiveClick(String userInput) {
         Category newCategory = new Category(userInput);
         listAdapter.addCategory(getApplicationContext(), newCategory);
+    }
+
+    @Override
+    public void onDialogPositiveClick(Category category, String newName) {
+        listAdapter.editName(category, newName);
     }
 }

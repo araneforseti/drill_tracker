@@ -11,21 +11,28 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.forseti.drilltracker.R;
+import com.forseti.drilltracker.data.Category;
 
-public class CreateCategoryFragment extends DialogFragment {
-    public interface CreateCategoryDialogListener {
-        void onDialogPositiveClick(String userInput);
+public class EditCategoryFragment extends DialogFragment {
+    private Category category;
+
+    public interface EditCategoryDialogListener {
+        void onDialogPositiveClick(Category category, String newName);
     }
 
-    CreateCategoryDialogListener listener;
+    EditCategoryDialogListener listener;
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            listener = (CreateCategoryDialogListener) activity;
+            listener = (EditCategoryDialogListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement CreateCategoryDialogListener");
+            throw new ClassCastException(activity.toString() + " must implement EditCategoryDialogListener");
         }
     }
 
@@ -35,13 +42,14 @@ public class CreateCategoryFragment extends DialogFragment {
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         View categoryView = inflater.inflate(R.layout.dialog_create_category, null);
         final EditText input = (EditText) categoryView.findViewById(R.id.category_name);
+        input.setText(category.getName());
 
         builder.setView(categoryView)
                 .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String userInput = input.getText().toString();
-                        listener.onDialogPositiveClick(userInput);
+                        listener.onDialogPositiveClick(category, userInput);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
