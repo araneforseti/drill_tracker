@@ -12,30 +12,40 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.R;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
+import com.forseti.drilltracker.data.Drill;
 
-public class CreateDrillFragment extends DialogFragment {
+public class EditDrillFragment extends DialogFragment {
     private ExpandableDrillListAdapter listAdapter;
+    private Drill drill;
+    private int categoryPosition;
 
     public void setListAdapter(ExpandableDrillListAdapter listAdapter) {
         this.listAdapter = listAdapter;
     }
 
-    public interface CreateDrillListener {
-        void onDialogPositiveClick(int categoryPosition, Drill newDrill);
+    public void setDrill(Drill drill) {
+        this.drill = drill;
     }
 
-    CreateDrillListener listener;
+    public void setCategoryPosition(int categoryPosition) {
+        this.categoryPosition = categoryPosition;
+    }
+
+    public interface EditDrillListener {
+        void onDialogPositiveClick(Drill drill, String name, String summary, String description, String url);
+    }
+
+    EditDrillListener listener;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            listener = (CreateDrillListener) activity;
+            listener = (EditDrillListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement CreateDrillListener");
+            throw new ClassCastException(activity.toString() + " must implement EditDrillListener");
         }
     }
 
@@ -49,30 +59,38 @@ public class CreateDrillFragment extends DialogFragment {
         final EditText drillDescription = (EditText) createDrillView.findViewById(R.id.create_drill_description);
         final EditText drillInstruction = (EditText) createDrillView.findViewById(R.id.create_drill_instructions);
         final EditText drillURL = (EditText) createDrillView.findViewById(R.id.create_drill_video_url);
-
         final Spinner categoryRadio = (Spinner) createDrillView.findViewById(R.id.categories_spinner);
+
         ArrayAdapter categoryAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, listAdapter.getCategories());
         categoryAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         categoryRadio.setAdapter(categoryAdapter);
+
+        drillName.setText(drill.getName());
+        drillDescription.setText(drill.getDescription());
+        drillInstruction.setText(drill.getInstructions());
+        drillURL.setText(drill.getVideoURL());
+        categoryRadio.setSelection(categoryPosition);
+        categoryRadio.setEnabled(false);
 
         builder.setView(createDrillView)
                 .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Drill drill = new Drill(drillName.getText().toString(), drillDescription.getText().toString());
-                        drill.setInstructions(drillInstruction.getText().toString());
-                        drill.setVideoURL(drillURL.getText().toString());
-                        int categoryPosition = categoryRadio.getSelectedItemPosition();
-                        listener.onDialogPositiveClick(categoryPosition, drill);
+                        String name = drillName.getText().toString();
+                        String description = drillDescription.getText().toString();
+                        String instructions = drillInstruction.getText().toString();
+                        String url = drillURL.getText().toString();
+
+                        listener.onDialogPositiveClick(drill, name, description, instructions, url);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                }
-        );
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }
+                );
 
         return builder.create();
     }

@@ -146,4 +146,12 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         category.setName(newName);
         notifyDataSetChanged(context);
     }
+
+    public void editDrill(Drill drill, String name, String summary, String instructions, String url) {
+        drill.setName(name);
+        drill.setDescription(summary);
+        drill.setInstructions(instructions);
+        drill.setVideoURL(url);
+        notifyDataSetChanged(context);
+    }
 }

@@ -11,12 +11,10 @@ import com.forseti.drilltracker.data.Category;
 import com.forseti.drilltracker.views.EditCategoryFragment;
 
 public class CategoryEditMenuListener implements MenuItem.OnMenuItemClickListener {
-    private final Context context;
     private final ExpandableDrillListAdapter listAdapter;
     private final FragmentManager fragmentManager;
 
-    public CategoryEditMenuListener(Context context, ExpandableDrillListAdapter listAdapter, FragmentManager fragmentManager) {
-        this.context = context;
+    public CategoryEditMenuListener(ExpandableDrillListAdapter listAdapter, FragmentManager fragmentManager) {
         this.listAdapter = listAdapter;
         this.fragmentManager = fragmentManager;
     }

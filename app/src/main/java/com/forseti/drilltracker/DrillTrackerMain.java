@@ -5,12 +5,14 @@ import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
+import com.forseti.drilltracker.clicklistener.DrillEditMenuListener;
 import com.forseti.drilltracker.data.Category;
 import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.menuinfo.ListContextMenuInfo;
@@ -19,11 +21,12 @@ import com.forseti.drilltracker.views.CreateCategoryFragment;
 import com.forseti.drilltracker.views.CreateDrillFragment;
 import com.forseti.drilltracker.views.DetailedDrillFragment;
 import com.forseti.drilltracker.views.EditCategoryFragment;
+import com.forseti.drilltracker.views.EditDrillFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFragment.CreateDrillListener, CreateCategoryFragment.CreateCategoryDialogListener, EditCategoryFragment.EditCategoryDialogListener {
+public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFragment.CreateDrillListener, CreateCategoryFragment.CreateCategoryDialogListener, EditCategoryFragment.EditCategoryDialogListener, EditDrillFragment.EditDrillListener {
     ExpandableDrillListAdapter listAdapter;
     ExpandableListView listView;
     List<Category> categoryList;
@@ -35,12 +38,13 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
+        Log.i("Set", "Here");
         listView = (ExpandableListView) findViewById(R.id.category_list);
         categoryList = new ArrayList<>();
 
         listAdapter = new ExpandableDrillListAdapter(this, categoryList);
         listView.setAdapter(listAdapter);
-
+        Log.i("Set", "Not me");
         registerForContextMenu(listView);
 
         listView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
@@ -133,5 +137,10 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
     @Override
     public void onDialogPositiveClick(Category category, String newName) {
         listAdapter.editName(category, newName);
+    }
+
+    @Override
+    public void onDialogPositiveClick(Drill drill, String name, String summary, String description, String url) {
+        listAdapter.editDrill(drill, name, summary, description, url);
     }
 }

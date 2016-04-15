@@ -2,18 +2,19 @@
     <string name="app_name">Drill Tracker</string>
     <string name="title_drill_detail">Drill Detail</string>
     <string name="create_category">Create Category</string>
-    <string name="create">Create</string>
+    <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="category_name">Category Name</string>
-    <string name="create_drill_title">Create Drill</string>
+    <string name="edit_drill_title">Edit Drill</string>
     <string name="create_drill_name">Drill Name</string>
     <string name="add_category">Create Category</string>
     <string name="drill_description_hint">Short Description</string>
     <string name="no_categories">No categories found! Please add one before creating a drill!</string>
     <string name="drill_instruction_hint">Detailed Instructions</string>
-    <string name="drill_video_hint">Video URL</string>
+    <string name="drill_url_hint">URL</string>
     <string name="delete_categoy">Delete Category</string>
     <string name="delete_drill">Delete Drill</string>
     <string name="not_empty_category">Not an empty category!</string>
     <string name="edit_categoy">Edit Category</string>
+    <string name="edit_drill">Edit Drill</string>
 </resources>

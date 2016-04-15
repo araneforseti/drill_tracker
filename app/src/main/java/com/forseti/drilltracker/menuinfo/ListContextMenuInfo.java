@@ -10,6 +10,7 @@ import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 import com.forseti.drilltracker.clicklistener.CategoryDeleteMenuListener;
 import com.forseti.drilltracker.clicklistener.CategoryEditMenuListener;
 import com.forseti.drilltracker.clicklistener.DrillDeleteMenuListener;
+import com.forseti.drilltracker.clicklistener.DrillEditMenuListener;
 
 public class ListContextMenuInfo {
 
@@ -20,10 +21,11 @@ public class ListContextMenuInfo {
 
         if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
             menu.add(category, drillPosition, 2, R.string.delete_categoy).setOnMenuItemClickListener(new CategoryDeleteMenuListener(context, listAdapter));
-            menu.add(category, drillPosition, 2, R.string.edit_categoy).setOnMenuItemClickListener(new CategoryEditMenuListener(context, listAdapter, fragmentManager   ));
+            menu.add(category, drillPosition, 2, R.string.edit_categoy).setOnMenuItemClickListener(new CategoryEditMenuListener(listAdapter, fragmentManager));
         }
         else {
             menu.add(category, drillPosition, 2, R.string.delete_drill).setOnMenuItemClickListener(new DrillDeleteMenuListener(context, listAdapter));;
+            menu.add(category, drillPosition, 2, R.string.edit_drill).setOnMenuItemClickListener(new DrillEditMenuListener(context, listAdapter, fragmentManager));;
         }
     }
 }

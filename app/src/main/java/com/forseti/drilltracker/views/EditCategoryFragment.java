@@ -45,7 +45,7 @@ public class EditCategoryFragment extends DialogFragment {
         input.setText(category.getName());
 
         builder.setView(categoryView)
-                .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String userInput = input.getText().toString();
