@@ -38,4 +38,9 @@ public class MainPage {
         onView(withText(drillName)).perform(longClick());
         onView(withText(R.string.edit_drill)).perform(click());
     }
+
+    public void openEditCategory(String categoryName) {
+        onView(withText(categoryName)).perform(longClick());
+        onView(withText(R.string.edit_categoy)).perform(click());
+    }
 }
