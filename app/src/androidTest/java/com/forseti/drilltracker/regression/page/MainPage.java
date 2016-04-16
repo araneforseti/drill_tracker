@@ -28,4 +28,13 @@ public class MainPage {
     public void clickCategory(String categoryName) {
         onView(withText(categoryName)).perform(click());
     }
+
+    public int getCategoryPosition(String categoryName) {
+        return 0;
+    }
+
+    public void deleteDrill(String categoryName, String drillName) {
+        onView(withText(drillName)).perform(longClick());
+        onView(withText(R.string.delete_drill)).perform(click());
+    }
 }

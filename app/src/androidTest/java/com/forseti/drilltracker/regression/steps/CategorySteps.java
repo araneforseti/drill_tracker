@@ -14,7 +14,7 @@ public class CategorySteps {
 
     public static void deleteCategory(String categoryName) {
         MainPage mainPage = new MainPage();
-        mainPage.deleteCategory("New Category Name");
+        mainPage.deleteCategory(categoryName);
     }
 
     public static void toggleCategory(String categoryName) {

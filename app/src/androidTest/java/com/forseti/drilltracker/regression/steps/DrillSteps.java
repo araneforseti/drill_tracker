@@ -14,4 +14,9 @@ public class DrillSteps {
         CreateDrillPage createDrillPage = new CreateDrillPage();
         createDrillPage.createDill(categoryName, newDrill);
     }
+
+    public static void deleteDrill(String categoryName, Drill newDrill) {
+        MainPage mainPage = new MainPage();
+        mainPage.deleteDrill(categoryName, newDrill.getName());
+    }
 }

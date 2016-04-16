@@ -1,9 +1,6 @@
 package com.forseti.drilltracker.regression.utils;
 
 import android.view.View;
-import android.view.Window;
-
-import com.forseti.drilltracker.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

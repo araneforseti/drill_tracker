@@ -16,6 +16,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -42,6 +43,15 @@ public class DrillLifeCycleTest {
         DrillSteps.addDrill(categoryName, newDrill);
         CategorySteps.toggleCategory(categoryName);
         onView(withText(newDrill.getName())).check(matches(isDisplayed()));
+
+        CategorySteps.deleteCategory(categoryName);
+        Helpers.checkToastMessage(mainActivityTestRule.getActivity().getWindow().getDecorView(), R.string.not_empty_category);
+
+        DrillSteps.deleteDrill(categoryName, newDrill);
+        onView(withText(newDrill.getName())).check(doesNotExist());
+
+        CategorySteps.deleteCategory(categoryName);
+        onView(withText(categoryName)).check(doesNotExist());
     }
 
     @After
