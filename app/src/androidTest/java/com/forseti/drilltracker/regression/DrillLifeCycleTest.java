@@ -44,10 +44,15 @@ public class DrillLifeCycleTest {
         CategorySteps.toggleCategory(categoryName);
         onView(withText(newDrill.getName())).check(matches(isDisplayed()));
 
+        String newDrillName = "New Drill Name";
+        DrillSteps.editDrill(newDrill.getName(), newDrillName);
+        onView(withText(newDrillName)).check(matches(isDisplayed()));
+
+
         CategorySteps.deleteCategory(categoryName);
         Helpers.checkToastMessage(mainActivityTestRule.getActivity().getWindow().getDecorView(), R.string.not_empty_category);
 
-        DrillSteps.deleteDrill(categoryName, newDrill);
+        DrillSteps.deleteDrill(newDrillName);
         onView(withText(newDrill.getName())).check(doesNotExist());
 
         CategorySteps.deleteCategory(categoryName);

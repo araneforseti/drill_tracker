@@ -29,12 +29,13 @@ public class MainPage {
         onView(withText(categoryName)).perform(click());
     }
 
-    public int getCategoryPosition(String categoryName) {
-        return 0;
-    }
-
-    public void deleteDrill(String categoryName, String drillName) {
+    public void deleteDrill(String drillName) {
         onView(withText(drillName)).perform(longClick());
         onView(withText(R.string.delete_drill)).perform(click());
+    }
+
+    public void openEditDrillDialog(String drillName) {
+        onView(withText(drillName)).perform(longClick());
+        onView(withText(R.string.edit_drill)).perform(click());
     }
 }

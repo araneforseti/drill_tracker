@@ -2,9 +2,8 @@ package com.forseti.drilltracker.regression.steps;
 
 import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.regression.page.CreateDrillPage;
+import com.forseti.drilltracker.regression.page.EditDrillPage;
 import com.forseti.drilltracker.regression.page.MainPage;
-
-import static android.support.test.espresso.Espresso.onView;
 
 public class DrillSteps {
     public static void addDrill(String categoryName, Drill newDrill) {
@@ -15,8 +14,17 @@ public class DrillSteps {
         createDrillPage.createDill(categoryName, newDrill);
     }
 
-    public static void deleteDrill(String categoryName, Drill newDrill) {
+    public static void deleteDrill(String drillName) {
         MainPage mainPage = new MainPage();
-        mainPage.deleteDrill(categoryName, newDrill.getName());
+        mainPage.deleteDrill(drillName);
+    }
+
+    public static void editDrill(String currentDrillName, String newDrillName) {
+        MainPage mainPage = new MainPage();
+        mainPage.openEditDrillDialog(currentDrillName);
+
+        EditDrillPage editDrillPage = new EditDrillPage();
+        editDrillPage.setName(newDrillName);
+        editDrillPage.save();
     }
 }
