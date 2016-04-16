@@ -12,6 +12,7 @@ import com.forseti.drilltracker.regression.steps.DrillSteps;
 import com.forseti.drilltracker.regression.utils.Helpers;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -24,6 +25,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class DrillLifeCycleTest {
     @Rule
     public ActivityTestRule<DrillTrackerMain> mainActivityTestRule = new ActivityTestRule(DrillTrackerMain.class);
+    
+    @Before
+    public void setUp() {
+        mainActivityTestRule.getActivity().deleteAllData();
+        Log.i("Data Cleanup", "Removing data");
+    }
 
     @Test
     public void shouldNotShowCreateDrillWithNoCategories() {

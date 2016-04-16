@@ -2,10 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/category_name"
-        android:hint="@string/category_name"
-        android:inputType="textPersonName"
+
+    <android.support.v7.widget.DialogTitle
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_category_title"
+        android:id="@+id/create_category_title"
+        android:textSize="20sp" />
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/category_name"
+            android:hint="@string/category_name"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+
 </LinearLayout>

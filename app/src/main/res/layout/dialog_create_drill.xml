@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.DialogTitle
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,32 +16,48 @@
         android:layout_height="wrap_content">
     </Spinner>
 
-    <EditText
-        android:id="@+id/create_drill_name"
-        android:inputType="textPersonName"
-        android:hint="@string/create_drill_name"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/create_drill_name"
+            android:inputType="textPersonName"
+            android:hint="@string/create_drill_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/create_drill_description"
-        android:inputType="textLongMessage"
-        android:hint="@string/drill_description_hint"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/create_drill_description"
+            android:inputType="textLongMessage"
+            android:hint="@string/drill_description_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/create_drill_instructions"
-        android:inputType="textMultiLine"
-        android:hint="@string/drill_instruction_hint"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/create_drill_instructions"
+            android:inputType="textMultiLine"
+            android:hint="@string/drill_instruction_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/create_drill_video_url"
-        android:inputType="textUri"
-        android:hint="@string/drill_url_hint"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/create_drill_video_url"
+            android:inputType="textUri"
+            android:hint="@string/drill_url_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>
