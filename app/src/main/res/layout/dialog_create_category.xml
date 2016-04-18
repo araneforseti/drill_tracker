@@ -16,7 +16,7 @@
         <EditText
             android:id="@+id/category_name"
             android:hint="@string/category_name"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </android.support.design.widget.TextInputLayout>
