@@ -6,12 +6,12 @@ import com.forseti.drilltracker.regression.page.EditDrillPage;
 import com.forseti.drilltracker.regression.page.MainPage;
 
 public class DrillSteps {
-    public static void addDrill(String categoryName, Drill newDrill) {
+    public static void addDrill(Drill newDrill) {
         MainPage mainPage = new MainPage();
         mainPage.openCreateDrillDialog();
 
         CreateDrillPage createDrillPage = new CreateDrillPage();
-        createDrillPage.createDill(categoryName, newDrill);
+        createDrillPage.createDill(newDrill);
     }
 
     public static void deleteDrill(String drillName) {

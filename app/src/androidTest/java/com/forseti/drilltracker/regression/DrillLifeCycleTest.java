@@ -42,12 +42,13 @@ public class DrillLifeCycleTest {
     @Test
     public void drillLifeCycle() {
         String categoryName = "Sample Category";
-        CategorySteps.addCategory(categoryName);
         Drill newDrill = new Drill("Drill Name", "Drill description");
         newDrill.setInstructions("Drill Instructions");
         newDrill.setVideoURL("Drill URL");
 
-        DrillSteps.addDrill(categoryName, newDrill);
+        CategorySteps.addCategory(categoryName);
+        DrillSteps.addDrill(newDrill);
+
         CategorySteps.toggleCategory(categoryName);
         onView(withText(newDrill.getName())).check(matches(isDisplayed()));
 

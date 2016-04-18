@@ -22,6 +22,7 @@ import com.forseti.drilltracker.views.CreateDrillFragment;
 import com.forseti.drilltracker.views.DetailedDrillFragment;
 import com.forseti.drilltracker.views.EditCategoryFragment;
 import com.forseti.drilltracker.views.EditDrillFragment;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,13 @@ public class DrillTrackerMain extends AppCompatActivity implements CreateDrillFr
         listView.setAdapter(listAdapter);
         Log.i("Set", "Not me");
         registerForContextMenu(listView);
+
+        FloatingActionButton addDrillButton = (FloatingActionButton) findViewById(R.id.add_drill);
+        addDrillButton.setSize(FloatingActionButton.SIZE_MINI);
+        addDrillButton.setTitle("Add Drill");
+
+        FloatingActionButton addCategoryButton = (FloatingActionButton) findViewById(R.id.add_category);
+        addCategoryButton.setSize(FloatingActionButton.SIZE_MINI);
 
         listView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override

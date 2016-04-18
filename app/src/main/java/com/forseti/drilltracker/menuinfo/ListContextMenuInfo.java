@@ -25,7 +25,7 @@ public class ListContextMenuInfo {
         }
         else {
             menu.add(category, drillPosition, 2, R.string.delete_drill).setOnMenuItemClickListener(new DrillDeleteMenuListener(context, listAdapter));;
-            menu.add(category, drillPosition, 2, R.string.edit_drill).setOnMenuItemClickListener(new DrillEditMenuListener(context, listAdapter, fragmentManager));;
+            menu.add(category, drillPosition, 2, R.string.edit_drill).setOnMenuItemClickListener(new DrillEditMenuListener(listAdapter, fragmentManager));;
         }
     }
 }

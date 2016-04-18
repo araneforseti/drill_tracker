@@ -9,12 +9,10 @@ import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.views.EditDrillFragment;
 
 public class DrillEditMenuListener implements MenuItem.OnMenuItemClickListener {
-    private final Context context;
     private final ExpandableDrillListAdapter listAdapter;
     private final FragmentManager fragmentManager;
 
-    public DrillEditMenuListener(Context context, ExpandableDrillListAdapter listAdapter, FragmentManager fragmentManager) {
-        this.context = context;
+    public DrillEditMenuListener(ExpandableDrillListAdapter listAdapter, FragmentManager fragmentManager) {
         this.listAdapter = listAdapter;
         this.fragmentManager = fragmentManager;
     }
@@ -22,9 +20,9 @@ public class DrillEditMenuListener implements MenuItem.OnMenuItemClickListener {
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         EditDrillFragment drillFragment = new EditDrillFragment();
+        drillFragment.setListAdapter(listAdapter);
         drillFragment.setDrill((Drill) listAdapter.getChild(item.getGroupId(), item.getItemId()));
         drillFragment.setCategoryPosition(item.getGroupId());
-        drillFragment.setListAdapter(listAdapter);
         drillFragment.show(fragmentManager, "CreateDrillFragment");
         return true;
     }
