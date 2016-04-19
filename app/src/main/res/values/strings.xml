@@ -15,4 +15,7 @@
     <string name="edit_categoy">Edit Category</string>
     <string name="edit_drill">Edit Drill</string>
     <string name="edit_category_title">Edit Category</string>
+    <string name="import_drills_label">Select file to import...</string>
+    <string name="placeholder">...</string>
+    <string name="import_positive">Import</string>
 </resources>

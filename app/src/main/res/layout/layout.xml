@@ -47,12 +47,21 @@
         >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/import_drills"
+            android:src="@android:drawable/ic_input_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="importDrills"
+            fab:fab_title="Import..."
+            fab:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_category"
             android:src="@android:drawable/ic_menu_more"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:onClick="addCategory"
-            fab:fab_title="Menu Item 2"
+            fab:fab_title="Add Category"
             fab:fab_size="mini"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -61,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:onClick="addDrill"
-            fab:fab_title="Menu Item 1"
+            fab:fab_title="Add Drill"
             fab:fab_size="mini"/>
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </RelativeLayout>

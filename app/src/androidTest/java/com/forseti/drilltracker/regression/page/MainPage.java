@@ -20,14 +20,11 @@ public class MainPage {
     }
 
     public void openCreateDrillDialog() {
-        openMenu();
         onView(withId(addDrillButton)).check(matches(isDisplayed()));
-        onView(withId(addDrillButton)).perform(click());
         onView(withId(addDrillButton)).perform(longClick());
     }
 
     public void openAddCategoryDialog() {
-        openMenu();
         onView(withId(addCategoryButton)).check(matches(isDisplayed()));
         onView(withId(addCategoryButton)).perform(click());
         onView(withId(addCategoryButton)).perform(longClick());
