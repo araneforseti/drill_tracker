@@ -108,9 +108,27 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         return categoryNames;
     }
 
+    public void addCategoryAndDrills(Context context, Category newCategory) {
+        Category current = getCategory(newCategory.getName());
+        Log.i("Drills", newCategory.getDrills().get(0).getName());
+        current.addDrills(newCategory.getDrills());
+        notifyDataSetChanged(context);
+    }
+
     public void addCategory(Context context, Category newCategory) {
         categories.add(newCategory);
         notifyDataSetChanged(context);
+    }
+
+    private Category getCategory(String name) {
+        for (Category category : categories) {
+            if (category.getName().equals(name)) {
+                return category;
+            }
+        }
+        Category category = new Category(name);
+        categories.add(category);
+        return category;
     }
 
     public void addDrill(Context context, int categoryPosition, Drill newDrill) {
@@ -120,7 +138,6 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
     }
 
     public void removeDrill(Context context, int categoryPosition, int drillPosition) {
-        Log.i("Data Removal", "Removing a drill!");
         Log.i("Data Removal", "Category: " + categoryPosition + " | Drill: " + drillPosition);
         Category category = (Category) getGroup(categoryPosition);
         category.getDrills().remove(drillPosition);

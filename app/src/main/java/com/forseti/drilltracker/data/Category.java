@@ -36,4 +36,8 @@ public class Category {
     public String toString() {
         return name + " Drills: " + drills.toString();
     }
+
+    public void addDrills(ArrayList<Drill> drills) {
+        this.drills.addAll(drills);
+    }
 }

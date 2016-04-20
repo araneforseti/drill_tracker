@@ -2,6 +2,7 @@ package com.forseti.drilltracker;
 
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +22,9 @@ import com.forseti.drilltracker.views.CreateDrillFragment;
 import com.forseti.drilltracker.views.DetailedDrillFragment;
 import com.forseti.drilltracker.views.EditCategoryFragment;
 import com.forseti.drilltracker.views.EditDrillFragment;
-import com.forseti.drilltracker.views.ImportDrillsFragment;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +34,8 @@ public class DrillTrackerMain extends AppCompatActivity
         implements CreateDrillFragment.CreateDrillListener,
         CreateCategoryFragment.CreateCategoryDialogListener,
         EditCategoryFragment.EditCategoryDialogListener,
-        EditDrillFragment.EditDrillListener,
-        ImportDrillsFragment.ImportDrillsDialogListener {
+        EditDrillFragment.EditDrillListener {
+
     ExpandableDrillListAdapter listAdapter;
     ExpandableListView listView;
     List<Category> categoryList;
@@ -130,19 +131,23 @@ public class DrillTrackerMain extends AppCompatActivity
     }
 
     public void importDrills(View view) {
-        ImportDrillsFragment importDrillsFragment = new ImportDrillsFragment();
-        FragmentManager manager = getFragmentManager();
-        importDrillsFragment.show(manager, "ImportDrillsFragment");
+        new MaterialFilePicker()
+                .withActivity(this)
+                .withRequestCode(1)
+                .withFilter(Pattern.compile(".*\\.txt$")) // Filtering files and directories by file name using regexp
+                .withFilterDirectories(false) // Set directories filterable (false by default)
+                .withHiddenFiles(false) // Show hidden files and folders
+                .start();
     }
 
-    public void useFileChooser(View view) {
-        new MaterialFilePicker()
-            .withActivity(this)
-            .withRequestCode(1)
-                .withFilter(Pattern.compile(".*\\.txt$")) // Filtering files and directories by file name using regexp
-            .withFilterDirectories(false) // Set directories filterable (false by default)
-            .withHiddenFiles(false) // Show hidden files and folders
-            .start();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            DataUtils.loadFromFile(getApplicationContext(), listAdapter, filePath);
+        }
     }
 
     public void setToast(int toast_message_id) {
@@ -176,10 +181,5 @@ public class DrillTrackerMain extends AppCompatActivity
     @Override
     public void onDialogPositiveClick(Drill drill, String name, String summary, String description, String url) {
         listAdapter.editDrill(drill, name, summary, description, url);
-    }
-
-    @Override
-    public void importDrills(String importFileName) {
-        Toast.makeText(getApplicationContext(), "File: " + importFileName, Toast.LENGTH_SHORT).show();
     }
 }

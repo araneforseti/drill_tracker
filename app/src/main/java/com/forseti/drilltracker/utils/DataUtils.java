@@ -9,6 +9,7 @@ import com.forseti.drilltracker.data.Category;
 
 import org.json.JSONArray;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -31,14 +32,12 @@ public class DataUtils {
         try {
             String dataString = mapper.writeValueAsString(categories);
             byte[] data = dataString.getBytes();
-            Log.i("Data Byte", dataString);
             FileOutputStream fileOutputStream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
             fileOutputStream.write(data);
             fileOutputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i("Data", "DATA SAVED!");
     }
 
     public static void loadData(Context context, ExpandableDrillListAdapter listAdapter) {
@@ -53,8 +52,6 @@ public class DataUtils {
             }
             fileInputStream.close();
 
-            Log.i("RawData", rawDataString);
-
             JSONArray jsonArray = new JSONArray(rawDataString);
             for (int index = 0; index < jsonArray.length(); index++) {
                 String rawCategory = jsonArray.getString(index);
@@ -65,7 +62,29 @@ public class DataUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        Log.i("Data", "DATA LOADED");
+    public static void loadFromFile(Context context, ExpandableDrillListAdapter listAdapter, String filePath) {
+        ObjectMapper mapper = new ObjectMapper();
+        String rawDataString = "";
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+            int cha;
+            while ((cha = fileInputStream.read()) != -1) {
+                rawDataString = rawDataString + (char) cha;
+            }
+            fileInputStream.close();
+
+            JSONArray jsonArray = new JSONArray(rawDataString);
+            for (int index = 0; index < jsonArray.length(); index++) {
+                String rawCategory = jsonArray.getString(index);
+                Category loadedCategory = mapper.readValue(rawCategory, Category.class);
+                Log.i("ParsedData", loadedCategory.toString());
+                listAdapter.addCategoryAndDrills(context, loadedCategory);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
