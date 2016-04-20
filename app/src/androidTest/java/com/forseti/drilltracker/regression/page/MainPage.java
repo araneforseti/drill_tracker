@@ -13,6 +13,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class MainPage {
     int addDrillButton = R.id.add_drill;
     int addCategoryButton = R.id.add_category;
+    int importFileButton = R.id.import_drills;
     int menuButton = R.id.menu;
 
     public void openMenu() {
@@ -52,5 +53,16 @@ public class MainPage {
     public void openEditCategory(String categoryName) {
         onView(withText(categoryName)).perform(longClick());
         onView(withText(R.string.edit_categoy)).perform(click());
+    }
+
+    public void openImportMenu() {
+        onView(withId(importFileButton)).check(matches(isDisplayed()));
+        onView(withId(importFileButton)).perform(click());
+        onView(withId(importFileButton)).perform(longClick());
+    }
+
+    public void importFile(String filename) {
+        onView(withText("Download")).perform(click());
+        onView(withText(filename)).perform(click());
     }
 }
