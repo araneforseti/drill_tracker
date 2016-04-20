@@ -6,7 +6,7 @@ import android.util.Log;
 import com.forseti.drilltracker.DrillTrackerMain;
 import com.forseti.drilltracker.R;
 import com.forseti.drilltracker.data.Drill;
-import com.forseti.drilltracker.regression.page.MainPage;
+import com.forseti.drilltracker.regression.steps.ApplicationSteps;
 import com.forseti.drilltracker.regression.steps.CategorySteps;
 import com.forseti.drilltracker.regression.steps.DrillSteps;
 import com.forseti.drilltracker.regression.utils.Helpers;
@@ -17,11 +17,9 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class DrillLifeCycleTest {
@@ -36,10 +34,7 @@ public class DrillLifeCycleTest {
 
     @Test
     public void shouldNotShowCreateDrillWithNoCategories() {
-        MainPage mainPage = new MainPage();
-        mainPage.openMenu();
-        onView(withId(R.id.add_drill)).perform(click());
-        mainPage.openCreateDrillDialog();
+        ApplicationSteps.openCreateDrillDialog();
         Helpers.checkToastMessage(mainActivityTestRule.getActivity().getWindow().getDecorView(), R.string.no_categories);
     }
 

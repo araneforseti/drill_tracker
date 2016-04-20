@@ -22,7 +22,7 @@ public class MainPage {
 
     public void openCreateDrillDialog() {
         onView(withId(addDrillButton)).check(matches(isDisplayed()));
-        onView(withId(addDrillButton)).perform(longClick());
+        onView(withId(addDrillButton)).perform(click());
     }
 
     public void openAddCategoryDialog() {
