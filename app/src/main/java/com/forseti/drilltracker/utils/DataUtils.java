@@ -3,6 +3,7 @@ package com.forseti.drilltracker.utils;
 import android.content.Context;
 import android.util.Log;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 import com.forseti.drilltracker.data.Category;
@@ -86,5 +87,27 @@ public class DataUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getData(ExpandableDrillListAdapter listAdapter) {
+        List<Category> categories = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
+        String dataString = "";
+
+        Log.i("Data saving", "Saving " + listAdapter.getGroupCount());
+
+        for (int index = 0; index < listAdapter.getGroupCount(); index++) {
+            Category category = (Category) listAdapter.getGroup(index);
+            Log.i("Data Category", category.toString());
+            categories.add(category);
+        }
+
+        try {
+            dataString = mapper.writeValueAsString(categories);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return dataString;
     }
 }

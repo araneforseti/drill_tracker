@@ -24,6 +24,17 @@
         >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/export_drills"
+            android:src="@android:drawable/ic_menu_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:actionProviderClass=
+                "android.widget.ShareActionProvider"
+            android:onClick="exportDrills"
+            fab:fab_title="Export..."
+            fab:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/import_drills"
             android:src="@android:drawable/ic_menu_upload"
             android:rotation="180"

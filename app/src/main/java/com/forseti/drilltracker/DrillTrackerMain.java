@@ -66,6 +66,9 @@ public class DrillTrackerMain extends AppCompatActivity
         FloatingActionButton importDrillButton = (FloatingActionButton) findViewById(R.id.import_drills);
         importDrillButton.setSize(FloatingActionButton.SIZE_MINI);
 
+        FloatingActionButton exportDrillButton = (FloatingActionButton) findViewById(R.id.export_drills);
+        exportDrillButton.setSize(FloatingActionButton.SIZE_MINI);
+
         listView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -181,5 +184,13 @@ public class DrillTrackerMain extends AppCompatActivity
     @Override
     public void onDialogPositiveClick(Drill drill, String name, String summary, String description, String url) {
         listAdapter.editDrill(drill, name, summary, description, url);
+    }
+
+    public void exportDrills(View view) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, DataUtils.getData(listAdapter));
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
     }
 }
