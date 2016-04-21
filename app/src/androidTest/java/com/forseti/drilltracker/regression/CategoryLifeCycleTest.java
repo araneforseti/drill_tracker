@@ -4,7 +4,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
 
 import com.forseti.drilltracker.DrillTrackerMain;
-import com.forseti.drilltracker.data.Category;
 import com.forseti.drilltracker.regression.steps.CategorySteps;
 
 import org.junit.After;

@@ -1,9 +1,6 @@
 package com.forseti.drilltracker.clicklistener;
 
-import android.app.Activity;
-import android.app.Application;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.view.MenuItem;
 
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;

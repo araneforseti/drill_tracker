@@ -3,17 +3,10 @@ package com.forseti.drilltracker.regression.page;
 import com.forseti.drilltracker.R;
 import com.forseti.drilltracker.data.Drill;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.core.AllOf.allOf;
-import static org.hamcrest.core.Is.is;
 
 public class CreateDrillPage {
     int drill_name_input = R.id.create_drill_name;
