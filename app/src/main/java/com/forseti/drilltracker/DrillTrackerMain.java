@@ -47,13 +47,11 @@ public class DrillTrackerMain extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
-        Log.i("Set", "Here");
         listView = (ExpandableListView) findViewById(R.id.category_list);
         categoryList = new ArrayList<>();
 
         listAdapter = new ExpandableDrillListAdapter(this, categoryList);
         listView.setAdapter(listAdapter);
-        Log.i("Set", "Not me");
         registerForContextMenu(listView);
 
         FloatingActionButton addDrillButton = (FloatingActionButton) findViewById(R.id.add_drill);

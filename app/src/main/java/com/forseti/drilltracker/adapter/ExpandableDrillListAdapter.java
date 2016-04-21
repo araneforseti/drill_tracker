@@ -110,7 +110,6 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
 
     public void addCategoryAndDrills(Context context, Category newCategory) {
         Category current = getCategory(newCategory.getName());
-        Log.i("Drills", newCategory.getDrills().get(0).getName());
         current.addDrills(newCategory.getDrills());
         notifyDataSetChanged(context);
     }
