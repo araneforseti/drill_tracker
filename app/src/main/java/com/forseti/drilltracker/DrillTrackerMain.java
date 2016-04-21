@@ -134,9 +134,9 @@ public class DrillTrackerMain extends AppCompatActivity
         new MaterialFilePicker()
                 .withActivity(this)
                 .withRequestCode(1)
-                .withFilter(Pattern.compile(".*\\.txt$")) // Filtering files and directories by file name using regexp
-                .withFilterDirectories(false) // Set directories filterable (false by default)
-                .withHiddenFiles(false) // Show hidden files and folders
+                .withFilter(Pattern.compile(".*\\.txt$"))
+                .withFilterDirectories(false)
+                .withHiddenFiles(false)
                 .start();
     }
 

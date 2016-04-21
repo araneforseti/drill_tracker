@@ -12,29 +12,6 @@
         android:layout_height="match_parent">
     </ExpandableListView>
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/add_category"-->
-        <!--android:src="@android:drawable/ic_menu_more"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="addCategory"-->
-        <!--app:elevation="4dp"-->
-        <!--/>-->
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/add_drill"-->
-        <!--android:src="@android:drawable/ic_input_add"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="addDrill"-->
-        <!--app:elevation="4dp"-->
-        <!--/>-->
-
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/menu"
         android:layout_height="wrap_content"
@@ -48,7 +25,8 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/import_drills"
-            android:src="@android:drawable/ic_input_get"
+            android:src="@android:drawable/ic_menu_upload"
+            android:rotation="180"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="importDrills"
@@ -66,7 +44,7 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_drill"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@android:drawable/ic_menu_add"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:onClick="addDrill"
