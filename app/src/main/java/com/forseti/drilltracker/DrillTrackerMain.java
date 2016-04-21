@@ -54,19 +54,6 @@ public class DrillTrackerMain extends AppCompatActivity
         listView.setAdapter(listAdapter);
         registerForContextMenu(listView);
 
-        FloatingActionButton addDrillButton = (FloatingActionButton) findViewById(R.id.add_drill);
-        addDrillButton.setSize(FloatingActionButton.SIZE_MINI);
-        addDrillButton.setTitle("Add Drill");
-
-        FloatingActionButton addCategoryButton = (FloatingActionButton) findViewById(R.id.add_category);
-        addCategoryButton.setSize(FloatingActionButton.SIZE_MINI);
-
-        FloatingActionButton importDrillButton = (FloatingActionButton) findViewById(R.id.import_drills);
-        importDrillButton.setSize(FloatingActionButton.SIZE_MINI);
-
-        FloatingActionButton exportDrillButton = (FloatingActionButton) findViewById(R.id.export_drills);
-        exportDrillButton.setSize(FloatingActionButton.SIZE_MINI);
-
         listView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
