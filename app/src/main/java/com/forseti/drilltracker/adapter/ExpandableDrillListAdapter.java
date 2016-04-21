@@ -1,6 +1,7 @@
 package com.forseti.drilltracker.adapter;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -169,5 +170,9 @@ public class ExpandableDrillListAdapter extends BaseExpandableListAdapter {
         drill.setInstructions(instructions);
         drill.setVideoURL(url);
         notifyDataSetChanged(context);
+    }
+
+    public List<Category> getCategoryList() {
+        return categories;
     }
 }

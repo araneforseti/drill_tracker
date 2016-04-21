@@ -20,6 +20,18 @@ public class DataUtils {
     final static String FILENAME = "drill_list";
 
     public static void saveData(Context context, ExpandableDrillListAdapter listAdapter) {
+        try {
+            String dataString = getStringArrayForCategories(listAdapter);
+            byte[] data = dataString.getBytes();
+            FileOutputStream fileOutputStream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            fileOutputStream.write(data);
+            fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getStringArrayForCategories(ExpandableDrillListAdapter listAdapter) throws JsonProcessingException {
         List<Category> categories = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -30,15 +42,8 @@ public class DataUtils {
             Log.i("Data Category", category.toString());
             categories.add(category);
         }
-        try {
-            String dataString = mapper.writeValueAsString(categories);
-            byte[] data = dataString.getBytes();
-            FileOutputStream fileOutputStream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fileOutputStream.write(data);
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        return mapper.writeValueAsString(categories);
     }
 
     public static void loadData(Context context, ExpandableDrillListAdapter listAdapter) {

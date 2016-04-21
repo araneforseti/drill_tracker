@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,11 +17,15 @@ import com.forseti.drilltracker.data.Drill;
 import com.forseti.drilltracker.R;
 import com.forseti.drilltracker.adapter.ExpandableDrillListAdapter;
 
-public class CreateDrillFragment extends DialogFragment {
-    private ExpandableDrillListAdapter listAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
-    public void setListAdapter(ExpandableDrillListAdapter listAdapter) {
-        this.listAdapter = listAdapter;
+public class CreateDrillFragment extends DialogFragment {
+    public static final String CATEGORIES_KEY = "Categories";
+    List<String> categories;
+
+    public void setList(List<String> categories) {
+        this.categories = categories;
     }
 
     public interface CreateDrillListener {
@@ -41,6 +46,10 @@ public class CreateDrillFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            categories = savedInstanceState.getStringArrayList(CATEGORIES_KEY);
+        }
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         View createDrillView = inflater.inflate(R.layout.dialog_create_drill, null);
@@ -51,7 +60,7 @@ public class CreateDrillFragment extends DialogFragment {
         final EditText drillURL = (EditText) createDrillView.findViewById(R.id.create_drill_video_url);
 
         final Spinner categoryRadio = (Spinner) createDrillView.findViewById(R.id.categories_spinner);
-        ArrayAdapter categoryAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, listAdapter.getCategories());
+        ArrayAdapter categoryAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, categories);
         categoryAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         categoryRadio.setAdapter(categoryAdapter);
 
@@ -76,4 +85,13 @@ public class CreateDrillFragment extends DialogFragment {
 
         return builder.create();
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putStringArrayList(CATEGORIES_KEY, (ArrayList<String>) categories);
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+
 }

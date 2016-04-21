@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -22,7 +21,6 @@ import com.forseti.drilltracker.views.CreateDrillFragment;
 import com.forseti.drilltracker.views.DetailedDrillFragment;
 import com.forseti.drilltracker.views.EditCategoryFragment;
 import com.forseti.drilltracker.views.EditDrillFragment;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
@@ -112,7 +110,7 @@ public class DrillTrackerMain extends AppCompatActivity
         }
         else {
             CreateDrillFragment drillFragment = new CreateDrillFragment();
-            drillFragment.setListAdapter(listAdapter);
+            drillFragment.setList(listAdapter.getCategories());
             FragmentManager manager = getFragmentManager();
             drillFragment.show(manager, "CreateDrillFragment");
         }
