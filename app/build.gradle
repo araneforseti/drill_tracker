@@ -15,7 +15,7 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.16.0'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.16.0'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
     compile 'commons-io:commons-io:2.15.0'
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.nbsp:library:1.08'
